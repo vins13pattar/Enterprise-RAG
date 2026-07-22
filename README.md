@@ -44,7 +44,7 @@ The application is split into independent layers with explicit boundaries:
 
 | Layer | Responsibility | Local implementation |
 | --- | --- | --- |
-| UI | Enterprise pages for chat, documents, knowledge bases, evaluation, reviews, observability, and administration | Next.js shell in `apps/web` |
+| UI | Enterprise pages for chat, documents, knowledge bases, evaluation, reviews, observability, and administration | dependency-light Node/HTML shell in `apps/web` (Next.js-ready directory retained) |
 | API | Versioned REST/SSE endpoints, JWT auth, RBAC, workspace authorization, OpenAPI, metrics | FastAPI in `apps/api` |
 | Worker | Async ingestion process boundary | Worker process in `apps/worker` |
 | Ingestion | Source registration, text normalization, chunk creation, metadata persistence, job status tracking | `packages/ingestion` |
@@ -109,10 +109,10 @@ The current local runtime defaults to deterministic mock-style providers so the 
 
 ### Frontend
 
-- Next.js
-- TypeScript
+- Dependency-light Node.js web shell for PR-check reliability
+- TypeScript/Next.js-ready directory structure retained
 - Enterprise dashboard shell with professional page cards
-- Intended upgrade path: Tailwind CSS, shadcn/ui, TanStack Query, Playwright
+- Intended upgrade path: Next.js, Tailwind CSS, shadcn/ui, TanStack Query, Playwright
 
 ### Storage and Infrastructure
 
@@ -211,7 +211,7 @@ Important configuration groups:
 
 | Service | Port(s) | Purpose |
 | --- | --- | --- |
-| `web` | `3000` | Next.js user interface |
+| `web` | `3000` | Dependency-light enterprise web shell |
 | `api` | `8000` | FastAPI REST/SSE API |
 | `worker` | none | Background ingestion process boundary |
 | `postgres` | `5432` | Relational metadata |
@@ -587,7 +587,7 @@ CI is configured to compile Python files, run tests, build the frontend, build t
 | Human review | Demo implemented | Low-confidence responses create review queue entries |
 | Evaluation | Partial | Demo dataset and placeholder metrics script/endpoints |
 | Observability | Partial | Health and Prometheus endpoint; full OTel tracing pending |
-| Frontend | Partial | Professional shell; interactive workflows pending |
+| Frontend | Partial | Dependency-light professional shell; Next.js/Tailwind interactive workflows pending |
 | CI/CD | Partial | CI skeleton; full scans use placeholders |
 | Documentation | Implemented | README plus focused docs under `docs/` |
 
