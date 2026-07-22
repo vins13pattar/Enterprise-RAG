@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/vins13pattar/Enterprise-RAG/actions/workflows/ci.yml/badge.svg)](https://github.com/vins13pattar/Enterprise-RAG/actions/workflows/ci.yml)
 [![GitHub Pages](https://github.com/vins13pattar/Enterprise-RAG/actions/workflows/pages.yml/badge.svg)](https://github.com/vins13pattar/Enterprise-RAG/actions/workflows/pages.yml)
+[![Website](https://img.shields.io/badge/website-vinodspattar.in%2FEnterprise--RAG-0EA5E9)](https://vinodspattar.in/Enterprise-RAG/)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11%2B-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-API-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Docker Compose](https://img.shields.io/badge/Docker%20Compose-local%20stack-2496ED?logo=docker&logoColor=white)](https://docs.docker.com/compose/)
