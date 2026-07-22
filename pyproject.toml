@@ -1,0 +1,8 @@
+[project]
+name = "enterprise-rag"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["fastapi", "uvicorn[standard]", "sqlmodel", "psycopg[binary]", "pydantic-settings", "python-jose[cryptography]", "passlib[bcrypt]", "python-multipart", "redis", "qdrant-client", "boto3", "prometheus-client", "httpx", "pytest", "langgraph"]
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]

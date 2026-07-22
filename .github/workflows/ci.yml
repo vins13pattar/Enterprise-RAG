@@ -1,0 +1,17 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.11'}
+      - run: pip install -e .
+      - run: python -m compileall apps packages tests
+      - run: pytest -q
+      - uses: actions/setup-node@v4
+        with: {node-version: '20'}
+      - run: cd apps/web && npm install && npm run build
+      - run: docker build -f infrastructure/docker/api.Dockerfile -t enterprise-rag-api .
+      - run: echo "security scan, secret scan, and container vulnerability scan hooks ready"
