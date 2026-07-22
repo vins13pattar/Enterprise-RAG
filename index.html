@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Architecture overview for the Enterprise Knowledge Assistant production RAG reference application." />
+  <title>Enterprise Knowledge Assistant | RAG Architecture</title>
+  <base href="/Enterprise-RAG/" />
+  <link rel="stylesheet" href="assets/pages.css" />
+</head>
+<body>
+  <header class="site-header" id="top">
+    <a class="brand" href="index.html">Enterprise Knowledge Assistant</a>
+    <nav aria-label="Primary navigation">
+      <a href="#architecture">Architecture</a>
+      <a href="#flow">Flow</a>
+      <a href="#resources">Docs</a>
+      <a href="https://github.com/vins13pattar/Enterprise-RAG">GitHub</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <p class="label">Production RAG reference app</p>
+      <h1>Architecture for a secure, observable enterprise knowledge assistant.</h1>
+      <p class="lead">A practical monorepo showing ingestion, indexing, retrieval, generation, evaluation, guardrails, and operations with clear provider boundaries.</p>
+      <p class="actions"><a class="button" href="pages/production-readiness.html">Production readiness</a><a class="button secondary" href="pages/architecture.html">Architecture notes</a></p>
+    </section>
+
+    <section class="panel" id="architecture">
+      <h2>System architecture</h2>
+      <div class="diagram">
+        <div>Users and reviewers</div><span>↓</span>
+        <div>Web console · FastAPI REST/SSE · Admin workflows</div><span>↓</span>
+        <div>Auth/RBAC · Workspace isolation · Guardrails · Observability</div><span>↓</span>
+        <div>Ingestion · Retrieval · Generation · Evaluation</div><span>↓</span>
+        <div>PostgreSQL · Redis · Qdrant · MinIO · Prometheus</div>
+      </div>
+    </section>
+
+    <section class="panel" id="flow">
+      <h2>Request and data flow</h2>
+      <ol class="steps">
+        <li><strong>Ingest:</strong> register sources, normalize text, chunk documents, and persist metadata.</li>
+        <li><strong>Index:</strong> create embeddings through provider seams and store workspace-scoped vectors.</li>
+        <li><strong>Retrieve:</strong> run scoped retrieval with diagnostics and ranking controls.</li>
+        <li><strong>Generate:</strong> return cited answers with confidence and fallback behavior.</li>
+        <li><strong>Operate:</strong> monitor health, metrics, evaluations, and hardening gaps.</li>
+      </ol>
+    </section>
+
+    <section class="panel" id="resources">
+      <h2>Documentation</h2>
+      <p>These links open website-rendered HTML pages, not raw markdown files.</p>
+      <div class="resource-list"><a href="pages/api.html">API contract</a><a href="pages/data-model.html">Data model</a><a href="pages/retrieval.html">Retrieval design</a><a href="pages/security.html">Security model</a><a href="pages/evaluation.html">Evaluation strategy</a><a href="pages/production-readiness.html">Production readiness</a></div>
+    </section>
+  </main>
+
+  <footer class="footer">Enterprise Knowledge Assistant · <a href="https://github.com/vins13pattar/Enterprise-RAG">View repository</a></footer>
+</body>
+</html>
