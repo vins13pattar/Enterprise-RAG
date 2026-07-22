@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Architecture showcase for the Enterprise Knowledge Assistant production-grade RAG reference application." />
+  <title>Enterprise Knowledge Assistant | Production RAG Architecture</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <nav class="nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Enterprise Knowledge Assistant home">
+        <span class="brand-mark">RAG</span>
+        <span>Enterprise Knowledge Assistant</span>
+      </a>
+      <div class="nav-links">
+        <a href="#architecture">Architecture</a>
+        <a href="#flow">Flow</a>
+        <a href="#platform">Platform</a>
+        <a href="#roadmap">Roadmap</a>
+      </div>
+    </nav>
+
+    <section id="top" class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Production-grade RAG reference architecture</p>
+        <h1>Secure, observable, workspace-aware retrieval augmented generation.</h1>
+        <p class="lead">
+          A cloud-portable monorepo that demonstrates the complete enterprise RAG lifecycle:
+          ingestion, indexing, retrieval, generation, evaluation, guardrails, and operations.
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="./production-readiness.md">Production readiness</a>
+          <a class="button secondary" href="./architecture.md">Architecture notes</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="Architecture summary card">
+        <div class="status-pill">Local demo • Cloud-ready seams</div>
+        <h2>Composable layers</h2>
+        <ul>
+          <li>FastAPI control plane and streaming answer endpoints</li>
+          <li>Worker-driven ingestion and document normalization</li>
+          <li>Provider abstractions for LLMs, embeddings, and vector stores</li>
+          <li>Prometheus-ready observability and evaluation hooks</li>
+        </ul>
+      </div>
+    </section>
+  </header>
+
+  <main>
+    <section class="section" id="architecture">
+      <div class="section-heading">
+        <p class="eyebrow">System topology</p>
+        <h2>Reference implementation boundaries</h2>
+        <p>
+          The application is intentionally split into independently replaceable surfaces so teams can
+          promote the local demo to managed cloud services without rewriting business logic.
+        </p>
+      </div>
+
+      <div class="architecture-diagram" role="img" aria-label="Enterprise RAG layered architecture diagram">
+        <div class="diagram-node user">Users & reviewers</div>
+        <div class="diagram-arrow">↓</div>
+        <div class="diagram-row">
+          <div class="diagram-node">Web console</div>
+          <div class="diagram-node">REST / SSE API</div>
+          <div class="diagram-node">Admin workflows</div>
+        </div>
+        <div class="diagram-arrow">↓</div>
+        <div class="diagram-row wide">
+          <div class="diagram-node accent">Auth + RBAC</div>
+          <div class="diagram-node accent">Workspace isolation</div>
+          <div class="diagram-node accent">Guardrails</div>
+          <div class="diagram-node accent">Observability</div>
+        </div>
+        <div class="diagram-arrow">↓</div>
+        <div class="diagram-row">
+          <div class="diagram-node">Ingestion</div>
+          <div class="diagram-node">Retrieval</div>
+          <div class="diagram-node">Generation</div>
+          <div class="diagram-node">Evaluation</div>
+        </div>
+        <div class="diagram-arrow">↓</div>
+        <div class="diagram-row wide">
+          <div class="diagram-node storage">PostgreSQL</div>
+          <div class="diagram-node storage">Redis</div>
+          <div class="diagram-node storage">Qdrant</div>
+          <div class="diagram-node storage">MinIO</div>
+          <div class="diagram-node storage">Prometheus</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section split" id="flow">
+      <div>
+        <p class="eyebrow">Lifecycle</p>
+        <h2>From enterprise content to cited answers</h2>
+        <p>
+          The demo follows a production RAG path with explicit data ownership, retrieval diagnostics,
+          confidence scoring, and human review routing for low-confidence answers.
+        </p>
+      </div>
+      <ol class="timeline">
+        <li><strong>Ingest</strong><span>Register sources, normalize text, chunk documents, and persist metadata.</span></li>
+        <li><strong>Index</strong><span>Create embeddings through provider seams and store workspace-scoped vectors.</span></li>
+        <li><strong>Retrieve</strong><span>Run similarity, hybrid, and MMR-style retrieval with explainable diagnostics.</span></li>
+        <li><strong>Generate</strong><span>Produce structured answers with citations, confidence, and safe fallback behavior.</span></li>
+        <li><strong>Operate</strong><span>Track health, metrics, evaluations, and roadmap items for production hardening.</span></li>
+      </ol>
+    </section>
+
+    <section class="section" id="platform">
+      <div class="section-heading">
+        <p class="eyebrow">Production concerns</p>
+        <h2>Built around enterprise operating requirements</h2>
+      </div>
+      <div class="card-grid">
+        <article class="info-card"><h3>Security first</h3><p>JWT authentication, role-based access, workspace authorization, prompt-injection detection, and PII redaction primitives.</p></article>
+        <article class="info-card"><h3>Cloud portable</h3><p>Docker Compose for the local stack with package boundaries that map cleanly to AWS, Azure, GCP, or managed SaaS services.</p></article>
+        <article class="info-card"><h3>Observable</h3><p>Health endpoints, structured logging seams, Prometheus metrics, and evaluation scripts provide operational visibility.</p></article>
+        <article class="info-card"><h3>Provider neutral</h3><p>LLM, embedding, vector store, object storage, and model provider interfaces isolate vendor-specific code.</p></article>
+      </div>
+    </section>
+
+    <section class="section resources" id="roadmap">
+      <div>
+        <p class="eyebrow">Explore the repo</p>
+        <h2>Architecture resources</h2>
+      </div>
+      <div class="resource-list">
+        <a href="./api.md">API contract</a>
+        <a href="./data-model.md">Data model</a>
+        <a href="./retrieval.md">Retrieval design</a>
+        <a href="./security.md">Security model</a>
+        <a href="./evaluation.md">Evaluation strategy</a>
+        <a href="./production-readiness.md">Production readiness</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Enterprise Knowledge Assistant — a production-oriented RAG reference application.</p>
+  </footer>
+</body>
+</html>
