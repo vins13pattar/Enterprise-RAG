@@ -212,7 +212,7 @@ Important configuration groups:
 | Service | Port(s) | Purpose |
 | --- | --- | --- |
 | `web` | `3000` | Dependency-light enterprise web shell |
-| `api` | `8000` | FastAPI REST/SSE API |
+| `api` | `8000` | FastAPI REST/SSE API source image; CI Dockerfile omits dependency install for offline checks |
 | `worker` | none | Background ingestion process boundary |
 | `postgres` | `5432` | Relational metadata |
 | `redis` | `6379` | Queue/cache/rate-limit backing service |
@@ -565,7 +565,7 @@ CI is configured to compile Python files, run tests, build the frontend, build t
 | Requirement area | Status | Notes |
 | --- | --- | --- |
 | Monorepo layout | Implemented | Apps, packages, infrastructure, docs, sample data, tests |
-| Docker Compose stack | Implemented | Compose map exists for all requested local services |
+| Docker Compose stack | Partial | Compose map exists; CI Dockerfiles are dependency-light for restricted checks and should be productionized with locked dependency installation |
 | Authentication | Implemented | JWT login and `/me` |
 | RBAC/workspaces | Implemented | Workspace memberships and role checks |
 | Database entities | Implemented | Required SQLModel entities exist |
@@ -609,9 +609,10 @@ Before using this as a real enterprise system, complete these work items:
 10. Add file-type validation, size enforcement, malware-scanning adapter, and secure error responses.
 11. Expand frontend pages from shell cards into fully interactive screens.
 12. Persist online evaluation signals and implement full offline metric computation.
-13. Add contract tests for repository interfaces and integration tests with Postgres, Redis, Qdrant, and MinIO.
-14. Add production-grade CI security scans, container vulnerability scans, and secret scanning.
-15. Add Kubernetes manifests, Helm/Kustomize overlays, and cloud deployment documentation.
+13. Replace dependency-light CI Dockerfiles with production runtime images that install locked backend dependencies.
+14. Add contract tests for repository interfaces and integration tests with Postgres, Redis, Qdrant, and MinIO.
+15. Add production-grade CI security scans, container vulnerability scans, and secret scanning.
+16. Add Kubernetes manifests, Helm/Kustomize overlays, and cloud deployment documentation.
 
 ---
 
