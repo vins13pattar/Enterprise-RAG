@@ -538,7 +538,7 @@ If dependencies are unavailable locally, install them first in a normal network-
 pip install -e .
 ```
 
-CI is configured to compile Python files, run tests, build the frontend, build the backend image, and expose hooks for security, secret, and container vulnerability scans.
+CI is configured to install Python dependencies, compile Python files, run tests with `python -m pytest`, build the frontend, build backend/web images, and expose hooks for security, secret, and container vulnerability scans.
 
 ---
 
