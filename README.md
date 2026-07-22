@@ -270,7 +270,7 @@ The codebase is organized around the following domain seams:
 | `EmbeddingProvider` | Generate embeddings without coupling retrieval to a model vendor | Deterministic hash embedding provider |
 | `LLMProvider` | Planned seam for OpenAI/Azure/Ollama/Anthropic generation | Generation service currently uses deterministic grounded response logic |
 | `MetadataStore` | Persist relational state | SQLModel sessions |
-| `VectorStore` | Store and search vectors | Protocol defined; planned Qdrant adapter; current demo searches persisted chunks directly |
+| `VectorStore` | Store and search vectors | Planned Qdrant adapter; current demo searches persisted chunks directly |
 | `ObjectStore` | Store original files/artifacts | Planned MinIO/S3 adapter; current upload text is persisted through metadata path |
 | `TaskQueue` | Enqueue and retry background work | Worker process boundary exists; current ingestion is synchronous for demo reliability |
 | `Reranker` | Rerank retrieval candidates | Planned local/LLM reranker; current hybrid score combines lexical and vector signals |
@@ -601,7 +601,7 @@ Before using this as a real enterprise system, complete these work items:
 2. Add production extractors for PDF, DOCX, HTML, CSV, JSON, and remote websites.
 3. Implement Qdrant adapter with collection aliases, vector versioning, payload filters, and delete-by-document.
 4. Implement MinIO/S3 object-store adapter with encryption-ready metadata and lifecycle deletion.
-5. Wire the implemented cache-key builder into Redis adapters for query embeddings, retrieval results, and safe answer caching.
+5. Implement Redis cache keys including workspace, query hash, retrieval config version, embedding version, index version, prompt version, and model.
 6. Wire retrieval and generation workflows with LangGraph nodes and trace each node with OpenTelemetry.
 7. Add OpenAI, Azure OpenAI, Ollama, and optional Anthropic provider adapters.
 8. Add reranker interface implementations for local cross-encoder and LLM reranking.
@@ -662,7 +662,6 @@ Major choices are documented under `docs/adr/`.
 Current ADRs:
 
 - `docs/adr/0001-architecture.md` — clean architecture and provider interfaces
-- `docs/adr/0002-cache-key-isolation.md` — workspace-isolated cache key design
 
 ---
 
